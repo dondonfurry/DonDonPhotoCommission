@@ -130,6 +130,40 @@
   }
   .price-tag .unit{ font-size:13px; color:var(--ink-soft); }
 
+  /* ---------- portfolio link ---------- */
+  .portfolio-link{
+    padding:40px 0;
+    border-bottom:1px solid var(--line);
+  }
+  .portfolio-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:18px;
+    padding:26px 32px;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    font-size:15px;
+    font-weight:500;
+    color:var(--ink);
+    transition:border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+  }
+  .portfolio-btn:hover{ transform:translateY(-2px); box-shadow:0 8px 20px -12px rgba(0,0,0,0.25); border-color:var(--magenta); }
+  .portfolio-btn .icon-bar{
+    width:5px; height:34px; border-radius:1px;
+    flex-shrink:0;
+    background:var(--magenta);
+  }
+  .portfolio-btn .label{ color:var(--ink-soft); font-size:13px; letter-spacing:0.02em; }
+  .portfolio-btn .handle{
+    color:var(--ink);
+    font-weight:700;
+    font-family:'Noto Serif KR', serif;
+    font-size:19px;
+    display:block;
+    margin-top:4px;
+  }
+
   /* ---------- section common ---------- */
   section{ padding:88px 0; border-bottom:1px solid var(--line); }
   .section-head{ margin-bottom:48px; }
@@ -337,6 +371,15 @@
       <span class="num">25,000원</span>
       <span class="unit">/ 시간</span>
     </div>
+  </div>
+</section>
+
+<section class="portfolio-link">
+  <div class="wrap">
+    <a class="portfolio-btn" href="https://dondonfurry.github.io/dondonfurry/" target="_blank" rel="noopener">
+      <span class="icon-bar"></span>
+      <span><span class="label">Portfolio</span><span class="handle">포트폴리오 보러 가기</span></span>
+    </a>
   </div>
 </section>
 
