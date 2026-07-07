@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DonDon Fursuit Photo Commission</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #fafaf8;
+    --ink: #2e2d2b;
+    --ink-soft: #8b8983;
+    --line: #eae8e3;
+    --card: #ffffff;
+
+    --magenta: #d98fb3;
+    --green: #85c0a3;
+    --blue: #87abdb;
+
+    --magenta-strong: #b8557f;
+    --green-strong: #4c9272;
+    --blue-strong: #5680bd;
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Noto Sans KR', sans-serif;
+    font-weight:400;
+    line-height:1.7;
+    letter-spacing:-0.01em;
+  }
+
+  h1,h2,h3{
+    font-family:'Noto Serif KR', serif;
+    font-weight:700;
+    letter-spacing:-0.02em;
+  }
+
+  a{ color:inherit; text-decoration:none; }
+
+  .wrap{
+    max-width:920px;
+    margin:0 auto;
+    padding:0 28px;
+  }
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky;
+    top:0;
+    z-index:10;
+    background:rgba(245,244,242,0.85);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  header .wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    height:64px;
+  }
+  .logo{
+    font-family:'Noto Serif KR', serif;
+    font-weight:600;
+    font-size:17px;
+  }
+  nav{ display:flex; gap:28px; font-size:14px; color:var(--ink-soft); }
+  nav a:hover{ color:var(--ink); }
+
+  /* ---------- hero ---------- */
+  .hero{
+    padding:120px 0 100px;
+    border-bottom:1px solid var(--line);
+  }
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-size:13px;
+    color:var(--ink-soft);
+    margin-bottom:24px;
+  }
+  .eyebrow .dots{ display:flex; gap:6px; align-items:center; }
+  .eyebrow .dot{
+    width:3px; height:14px; border-radius:1px;
+  }
+  .dot.m{ background:var(--magenta); }
+  .dot.g{ background:var(--green); }
+  .dot.b{ background:var(--blue); }
+
+  .hero h1{
+    font-size:clamp(34px, 5.4vw, 56px);
+    line-height:1.28;
+    max-width:20ch;
+  }
+  .hero p{
+    margin-top:24px;
+    max-width:46ch;
+    color:var(--ink-soft);
+    font-size:16px;
+  }
+  .hero .price-tag{
+    margin-top:36px;
+    display:inline-flex;
+    align-items:baseline;
+    gap:10px;
+    padding:14px 20px;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:8px;
+  }
+  .price-tag .original{
+    font-family:'Noto Serif KR', serif;
+    font-size:15px;
+    color:var(--ink-soft);
+    text-decoration:line-through;
+    text-decoration-color:var(--ink-soft);
+  }
+  .price-tag .num{
+    font-family:'Noto Serif KR', serif;
+    font-weight:700;
+    font-size:22px;
+    color:var(--magenta-strong);
+  }
+  .price-tag .unit{ font-size:13px; color:var(--ink-soft); }
+
+  /* ---------- section common ---------- */
+  section{ padding:88px 0; border-bottom:1px solid var(--line); }
+  .section-head{ margin-bottom:48px; }
+  .section-head .tag{
+    font-size:13px; color:var(--ink-soft); margin-bottom:10px; display:block;
+  }
+  .section-head h2{ font-size:28px; }
+
+  /* ---------- intro ---------- */
+  .intro-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:40px;
+  }
+  .intro-grid p{ color:var(--ink-soft); font-size:15px; }
+  .intro-grid p + p{ margin-top:16px; }
+
+  /* ---------- process ---------- */
+  .steps{
+    display:flex;
+    flex-direction:column;
+  }
+  .step{
+    display:flex;
+    flex-direction:column;
+    gap:24px;
+    padding:48px 0;
+    border-top:1px solid var(--line);
+    position:relative;
+  }
+  .step:last-child{ border-bottom:none; }
+  .step .thumb{
+    width:80%;
+    max-width:80%;
+    aspect-ratio:4/3;
+    height:auto;
+    object-fit:cover;
+    border-radius:14px;
+    background:var(--line);
+    display:block;
+    margin:0 auto;
+  }
+  .step .content .num{
+    font-family:'Noto Serif KR', serif;
+    font-size:13px;
+    color:var(--ink-soft);
+    display:block;
+    margin-bottom:8px;
+  }
+  .step .swatch{
+    width:4px; height:16px; border-radius:1px;
+    display:inline-block;
+    margin-right:10px;
+    position:relative;
+    top:2px;
+  }
+  .step h3{
+    font-size:18px;
+    font-weight:700;
+    margin-bottom:8px;
+    display:flex;
+    align-items:center;
+  }
+  .step p{ color:var(--ink-soft); font-size:14.5px; max-width:56ch; }
+
+  .step[data-tone="magenta"] .swatch{ background:var(--magenta); }
+  .step[data-tone="green"] .swatch{ background:var(--green); }
+  .step[data-tone="blue"] .swatch{ background:var(--blue); }
+
+  /* ---------- pricing ---------- */
+  .price-cards{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:20px;
+  }
+  .price-card{
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:10px;
+    padding:28px;
+  }
+  .price-card .label{
+    font-size:13px; color:var(--ink-soft); margin-bottom:12px;
+  }
+  .price-card .value{
+    font-family:'Noto Serif KR', serif;
+    font-weight:700;
+    font-size:26px;
+    color:var(--magenta-strong);
+  }
+  .price-card .value-original{
+    font-size:16px;
+    font-weight:400;
+    color:var(--ink-soft);
+    text-decoration:line-through;
+    margin-right:8px;
+  }
+  .price-card .value-unit{
+    font-size:14px;
+    font-weight:400;
+    color:var(--ink-soft);
+  }
+  .price-card .desc{
+    margin-top:10px;
+    font-size:13.5px;
+    color:var(--ink-soft);
+  }
+  .price-card.accent{
+    border-left:3px solid var(--blue);
+  }
+
+  .note{
+    margin-top:24px;
+    font-size:13px;
+    color:var(--ink-soft);
+  }
+  .note::before{ content:"· "; }
+
+  /* ---------- contact ---------- */
+  .contact-buttons{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+  }
+  .contact-btn{
+    flex:1 1 240px;
+    display:inline-flex;
+    align-items:center;
+    gap:18px;
+    padding:26px 32px;
+    background:var(--card);
+    border:1px solid var(--line);
+    border-radius:12px;
+    font-size:15px;
+    font-weight:500;
+    transition:border-color .2s ease, transform .2s ease, box-shadow .2s ease;
+  }
+  .contact-btn:hover{ transform:translateY(-2px); box-shadow:0 8px 20px -12px rgba(0,0,0,0.25); }
+  .contact-btn .icon-bar{
+    width:5px; height:34px; border-radius:1px;
+    flex-shrink:0;
+  }
+  .contact-btn.telegram .icon-bar{ background:var(--blue); }
+  .contact-btn.telegram:hover{ border-color:var(--blue); }
+  .contact-btn.kakao .icon-bar{ background:var(--green); }
+  .contact-btn.kakao:hover{ border-color:var(--green); }
+  .contact-btn .label{ color:var(--ink-soft); font-size:13px; letter-spacing:0.02em; }
+  .contact-btn .handle{
+    color:var(--ink);
+    font-weight:700;
+    font-family:'Noto Serif KR', serif;
+    font-size:19px;
+    display:block;
+    margin-top:4px;
+  }
+
+  /* ---------- footer ---------- */
+  footer{ padding:64px 0; }
+  footer .wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:16px;
+  }
+  footer .brand{ font-family:'Noto Serif KR', serif; font-weight:600; }
+  footer .contact{ font-size:14px; color:var(--ink-soft); text-align:right; }
+  footer .contact-row{ line-height:1.9; }
+  footer .contact a:hover{ color:var(--ink); }
+
+  @media (max-width:640px){
+    .intro-grid, .price-cards{ grid-template-columns:1fr; }
+    .hero{ padding:80px 0 64px; }
+    nav{ gap:16px; font-size:13px; }
+    .step .thumb{ border-radius:10px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <div class="logo">DonDon Fursuit Photo</div>
+    <nav>
+      <a href="#intro">소개</a>
+      <a href="#process">진행 과정</a>
+      <a href="#pricing">가격</a>
+      <a href="#contact">문의</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <span class="eyebrow">
+      <span class="dots">
+        <span class="dot m"></span><span class="dot g"></span><span class="dot b"></span>
+      </span>
+      퍼슈트 사진 커미션
+    </span>
+    <h1>자신의 퍼슈터가<br>가장 캐릭터다울 수 있도록</h1>
+    <p>퍼슈트 캐릭터를 위한 촬영 커미션입니다.<br>상담부터 촬영 구도 스케치까지,<br>사진이 만들어지는 과정을 함께 다듬어 나갑니다.</p>
+    <div class="price-tag">
+      <span class="original">30,000원</span>
+      <span class="num">25,000원</span>
+      <span class="unit">/ 시간</span>
+    </div>
+  </div>
+</section>
+
+<section id="intro">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="tag">Intro</span>
+      <h2>소개</h2>
+    </div>
+    <div class="intro-grid">
+      <div>
+        <p>퍼슈트는 캐릭터 그 자체인 만큼, 캐릭터성을 살려야 합니다.<br>보정 방법과 촬영 시에 드러나는 색감과 자세로,<br>퍼슈터의 캐릭터성을 살려드립니다.</p>
+        <p>촬영 전 1:1 맞춤 상담을 통해<br>캐릭터의 성격과 원하는 분위기를 먼저 파악하고,<br>그에 맞는 장소와 구도, 색감까지 함께 정합니다.</p>
+      </div>
+      <div>
+        <p>촬영은 스튜디오에서 진행하는 것을 기본으로 하며,<br>스튜디오 대여 비용은 의뢰자 측에서 부담합니다.</p>
+        <p>비용은 촬영 준비부터 종료까지 소요된 시간을 기준으로,<br>시간당 25,000원이 적용됩니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="tag">Process · 3 Steps</span>
+      <h2>진행 과정</h2>
+    </div>
+    <div class="steps">
+      <div class="step" data-tone="magenta">
+        <img class="thumb" src="1.png" alt="상담 및 톤앤매너 결정" onerror="this.style.opacity=0">
+        <div class="content">
+          <span class="num">01</span>
+          <h3><span class="swatch"></span>상담 및 톤앤매너 결정</h3>
+          <p>캐릭터의 컨셉과 원하는 분위기를 이야기하며<br>전체적인 보정 방향(밝고 화사한 느낌,시네마틱한 느낌 등)을 정합니다.</p>
+        </div>
+      </div>
+      <div class="step" data-tone="green">
+        <img class="thumb" src="2.png" alt="스튜디오 결정 및 답사" onerror="this.style.opacity=0">
+        <div class="content">
+          <span class="num">02</span>
+          <h3><span class="swatch"></span>스튜디오 결정 및 답사</h3>
+          <p>정해진 톤에 어울리는 스튜디오를 함께 찾고,<br>필요한 경우 사전 답사를 통해 구도를 미리 확인해드립니다.</p>
+        </div>
+      </div>
+      <div class="step" data-tone="blue">
+        <img class="thumb" src="3.png" alt="구도 스케치 및 전달" onerror="this.style.opacity=0">
+        <div class="content">
+          <span class="num">03</span>
+          <h3><span class="swatch"></span>구도 스케치 및 전달</h3>
+          <p>촬영할 컷들의 구도를 간단한 스케치로 정리해 의뢰자에게 전달하고,<br>확인 후 촬영 일정을 확정합니다.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="tag">Pricing</span>
+      <h2>가격 안내</h2>
+    </div>
+    <div class="price-cards">
+      <div class="price-card">
+        <div class="label">촬영 비용</div>
+        <div class="value"><span class="value-original">30,000원</span> 25,000원 <span class="value-unit">/ 시간</span></div>
+        <div class="desc">상담 및 준비 시간을 포함해, 실제 소요된 시간을 기준으로 계산됩니다.</div>
+      </div>
+      <div class="price-card accent">
+        <div class="label">스튜디오 대여</div>
+        <div class="value">별도 부담</div>
+        <div class="desc">스튜디오 예약 및 대여 비용은 의뢰자 측에서 직접 부담합니다.</div>
+      </div>
+    </div>
+    <p class="note">최종 견적은 촬영 컷 수, 장소, 소요 시간에 따라 상담 후 안내드립니다.</p>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="tag">Contact</span>
+      <h2>문의</h2>
+    </div>
+    <div class="contact-buttons">
+      <a class="contact-btn telegram" href="https://t.me/DIGNALCIKA" target="_blank" rel="noopener">
+        <span class="icon-bar"></span>
+        <span><span class="label">Telegram</span><span class="handle">@DIGNALCIKA</span></span>
+      </a>
+      <a class="contact-btn kakao" href="https://open.kakao.com/o/sCFJiVCi" target="_blank" rel="noopener">
+        <span class="icon-bar"></span>
+        <span><span class="label">KakaoTalk</span><span class="handle">오픈채팅 바로가기</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="brand">DonDon Fursuit Photo</div>
+  </div>
+</footer>
+
+</body>
+</html>
