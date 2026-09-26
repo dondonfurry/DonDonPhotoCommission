@@ -8,19 +8,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg: #fafaf8;
-    --ink: #2e2d2b;
-    --ink-soft: #8b8983;
-    --line: #eae8e3;
-    --card: #ffffff;
+    --bg: #131215;
+    --ink: #f1efec;
+    --ink-soft: #a3a09a;
+    --line: #2c2b2e;
+    --card: #1c1b1f;
 
     --magenta: #d98fb3;
     --green: #85c0a3;
     --blue: #87abdb;
 
-    --magenta-strong: #b8557f;
-    --green-strong: #4c9272;
-    --blue-strong: #5680bd;
+    --magenta-strong: #e29cc0;
+    --green-strong: #8fcaab;
+    --blue-strong: #9cbce8;
   }
 
   *{ box-sizing:border-box; margin:0; padding:0; }
@@ -34,6 +34,28 @@
     font-weight:400;
     line-height:1.7;
     letter-spacing:-0.01em;
+    position:relative;
+    min-height:100vh;
+  }
+  body::before{
+    content:"";
+    position:fixed;
+    inset:-15%;
+    z-index:-1;
+    background-repeat:no-repeat;
+    background-image:
+      radial-gradient(680px circle, rgba(217,143,179,0.15), transparent 62%),
+      radial-gradient(720px circle, rgba(135,171,219,0.13), transparent 62%),
+      radial-gradient(640px circle, rgba(133,192,163,0.12), transparent 62%);
+    background-size:160% 160%;
+    background-position:4% 4%, 96% 18%, 22% 96%;
+    animation:blob-drift 32s ease-in-out infinite alternate;
+    will-change:background-position;
+  }
+  @keyframes blob-drift{
+    0%{ background-position:4% 4%, 96% 18%, 22% 96%; }
+    50%{ background-position:10% 12%, 90% 26%, 16% 88%; }
+    100%{ background-position:0% 10%, 100% 8%, 26% 100%; }
   }
 
   h1,h2,h3{
@@ -43,6 +65,14 @@
   }
 
   a{ color:inherit; text-decoration:none; }
+
+  .glass{
+    background:rgba(255,255,255,0.045);
+    backdrop-filter:blur(26px) saturate(140%);
+    -webkit-backdrop-filter:blur(26px) saturate(140%);
+    border:1px solid rgba(255,255,255,0.07);
+    box-shadow:0 8px 32px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.05);
+  }
 
   .wrap{
     max-width:920px;
@@ -55,9 +85,10 @@
     position:sticky;
     top:0;
     z-index:10;
-    background:rgba(245,244,242,0.85);
-    backdrop-filter:blur(6px);
-    border-bottom:1px solid var(--line);
+    background:rgba(19,18,21,0.4);
+    backdrop-filter:blur(22px) saturate(140%);
+    -webkit-backdrop-filter:blur(22px) saturate(140%);
+    border-bottom:1px solid rgba(255,255,255,0.06);
   }
   header .wrap{
     display:flex;
@@ -75,8 +106,54 @@
 
   /* ---------- hero ---------- */
   .hero{
+    position:relative;
     padding:120px 0 100px;
     border-bottom:1px solid var(--line);
+    overflow:hidden;
+  }
+  .hero-marquee{
+    position:absolute;
+    inset:0;
+    z-index:0;
+    overflow:hidden;
+  }
+  .hero-marquee .track{
+    display:flex;
+    align-items:center;
+    height:100%;
+    width:max-content;
+    gap:14px;
+    animation:marquee-scroll 36s linear infinite;
+  }
+  .hero-marquee .track img{
+    height:100%;
+    width:auto;
+    aspect-ratio:4/3;
+    object-fit:cover;
+    filter:grayscale(0.25) brightness(0.55);
+    background:var(--card);
+    display:block;
+  }
+  .hero-marquee .shade{
+    position:absolute;
+    inset:0;
+    background:linear-gradient(180deg, rgba(13,12,15,0.55), rgba(13,12,15,0.78));
+  }
+  @keyframes marquee-scroll{
+    from{ transform:translateX(0); }
+    to{ transform:translateX(-50%); }
+  }
+  .hero .wrap{ position:relative; z-index:2; }
+  .hero-box{
+    display:inline-block;
+    max-width:680px;
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:18px;
+    padding:40px;
+    backdrop-filter:blur(28px) saturate(140%);
+    -webkit-backdrop-filter:blur(28px) saturate(140%);
+    box-shadow:0 8px 32px rgba(0,0,0,0.28), inset 0 1px 0 rgba(255,255,255,0.06);
   }
   .eyebrow{
     display:inline-flex;
@@ -95,32 +172,27 @@
   .dot.b{ background:var(--blue); }
 
   .hero h1{
-    font-size:clamp(34px, 5.4vw, 56px);
-    line-height:1.28;
-    max-width:20ch;
+    font-size:clamp(30px, 4.6vw, 46px);
+    line-height:1.32;
+    max-width:26ch;
   }
   .hero p{
     margin-top:24px;
     max-width:46ch;
     color:var(--ink-soft);
-    font-size:16px;
+    font-size:15.5px;
   }
   .hero .price-tag{
-    margin-top:36px;
+    margin-top:32px;
     display:inline-flex;
     align-items:baseline;
     gap:10px;
     padding:14px 20px;
-    background:var(--card);
-    border:1px solid var(--line);
+    background:rgba(255,255,255,0.055);
+    border:1px solid rgba(255,255,255,0.09);
     border-radius:8px;
-  }
-  .price-tag .original{
-    font-family:'Noto Serif KR', serif;
-    font-size:15px;
-    color:var(--ink-soft);
-    text-decoration:line-through;
-    text-decoration-color:var(--ink-soft);
+    backdrop-filter:blur(16px) saturate(140%);
+    -webkit-backdrop-filter:blur(16px) saturate(140%);
   }
   .price-tag .num{
     font-family:'Noto Serif KR', serif;
@@ -140,12 +212,15 @@
     align-items:center;
     gap:18px;
     padding:26px 32px;
-    background:var(--card);
-    border:1px solid var(--line);
+    background:rgba(255,255,255,0.045);
+    border:1px solid rgba(255,255,255,0.07);
     border-radius:12px;
     font-size:15px;
     font-weight:500;
     color:var(--ink);
+    backdrop-filter:blur(24px) saturate(140%);
+    -webkit-backdrop-filter:blur(24px) saturate(140%);
+    box-shadow:0 8px 32px rgba(0,0,0,0.25);
     transition:border-color .2s ease, transform .2s ease, box-shadow .2s ease;
   }
   .portfolio-btn:hover{ transform:translateY(-2px); box-shadow:0 8px 20px -12px rgba(0,0,0,0.25); border-color:var(--magenta); }
@@ -240,10 +315,13 @@
     gap:20px;
   }
   .price-card{
-    background:var(--card);
-    border:1px solid var(--line);
-    border-radius:10px;
+    background:rgba(255,255,255,0.045);
+    border:1px solid rgba(255,255,255,0.07);
+    border-radius:12px;
     padding:28px;
+    backdrop-filter:blur(24px) saturate(140%);
+    -webkit-backdrop-filter:blur(24px) saturate(140%);
+    box-shadow:0 8px 32px rgba(0,0,0,0.25);
   }
   .price-card .label{
     font-size:13px; color:var(--ink-soft); margin-bottom:12px;
@@ -253,13 +331,6 @@
     font-weight:700;
     font-size:26px;
     color:var(--magenta-strong);
-  }
-  .price-card .value-original{
-    font-size:16px;
-    font-weight:400;
-    color:var(--ink-soft);
-    text-decoration:line-through;
-    margin-right:8px;
   }
   .price-card .value-unit{
     font-size:14px;
@@ -294,11 +365,14 @@
     align-items:center;
     gap:18px;
     padding:26px 32px;
-    background:var(--card);
-    border:1px solid var(--line);
+    background:rgba(255,255,255,0.045);
+    border:1px solid rgba(255,255,255,0.07);
     border-radius:12px;
     font-size:15px;
     font-weight:500;
+    backdrop-filter:blur(24px) saturate(140%);
+    -webkit-backdrop-filter:blur(24px) saturate(140%);
+    box-shadow:0 8px 32px rgba(0,0,0,0.25);
     transition:border-color .2s ease, transform .2s ease, box-shadow .2s ease;
   }
   .contact-btn:hover{ transform:translateY(-2px); box-shadow:0 8px 20px -12px rgba(0,0,0,0.25); }
@@ -339,6 +413,7 @@
     .hero{ padding:80px 0 64px; }
     nav{ gap:16px; font-size:13px; }
     .step .thumb{ border-radius:10px; }
+    .hero-box{ max-width:100%; padding:28px; }
   }
 </style>
 </head>
@@ -357,19 +432,35 @@
 </header>
 
 <section class="hero">
+  <div class="hero-marquee" aria-hidden="true">
+    <div class="track">
+      <img src="1a.webp" onerror="this.style.display='none'">
+      <img src="2a.webp" onerror="this.style.display='none'">
+      <img src="3a.webp" onerror="this.style.display='none'">
+      <img src="4a.webp" onerror="this.style.display='none'">
+      <img src="5a.webp" onerror="this.style.display='none'">
+      <img src="1a.webp" onerror="this.style.display='none'">
+      <img src="2a.webp" onerror="this.style.display='none'">
+      <img src="3a.webp" onerror="this.style.display='none'">
+      <img src="4a.webp" onerror="this.style.display='none'">
+      <img src="5a.webp" onerror="this.style.display='none'">
+    </div>
+    <div class="shade"></div>
+  </div>
   <div class="wrap">
-    <span class="eyebrow">
-      <span class="dots">
-        <span class="dot m"></span><span class="dot g"></span><span class="dot b"></span>
+    <div class="hero-box">
+      <span class="eyebrow">
+        <span class="dots">
+          <span class="dot m"></span><span class="dot g"></span><span class="dot b"></span>
+        </span>
+        퍼슈트 사진 커미션
       </span>
-      퍼슈트 사진 커미션
-    </span>
-    <h1>자신의 퍼슈터가<br>가장 캐릭터다울 수 있도록</h1>
-    <p>퍼슈트 캐릭터를 위한 촬영 커미션입니다.<br>상담부터 촬영 구도 스케치까지,<br>사진이 만들어지는 과정을 함께 다듬어 나갑니다.</p>
-    <div class="price-tag">
-      <span class="original">30,000원</span>
-      <span class="num">25,000원</span>
-      <span class="unit">/ 시간</span>
+      <h1>자신의 퍼슈터가<br>가장 캐릭터다울 수 있도록</h1>
+      <p>퍼슈트 캐릭터를 위한 촬영 커미션입니다.<br>상담부터 촬영 구도 스케치까지,<br>사진이 만들어지는 과정을 함께 다듬어 나갑니다.</p>
+      <div class="price-tag">
+        <span class="num">30,000원</span>
+        <span class="unit">/ 시간</span>
+      </div>
     </div>
   </div>
 </section>
@@ -396,7 +487,7 @@
       </div>
       <div>
         <p>촬영은 스튜디오에서 진행하는 것을 기본으로 하며,<br>스튜디오 대여 비용은 의뢰자 측에서 부담합니다.</p>
-        <p>비용은 촬영 준비부터 종료까지 소요된 시간을 기준으로,<br>시간당 25,000원이 적용됩니다.</p>
+        <p>비용은 촬영 준비부터 종료까지 소요된 시간을 기준으로,<br>시간당 30,000원이 적용됩니다.</p>
       </div>
     </div>
   </div>
@@ -410,27 +501,27 @@
     </div>
     <div class="steps">
       <div class="step" data-tone="magenta">
-        <img class="thumb" src="1.png" alt="상담 및 톤앤매너 결정" onerror="this.style.opacity=0">
+        <img class="thumb" src="1.webp" alt="상담 및 분위기 결정" onerror="this.style.opacity=0">
         <div class="content">
           <span class="num">01</span>
-          <h3><span class="swatch"></span>상담 및 톤앤매너 결정</h3>
-          <p>캐릭터의 컨셉과 원하는 분위기를 이야기하며<br>전체적인 보정 방향(밝고 화사한 느낌,시네마틱한 느낌 등)을 정합니다.</p>
+          <h3><span class="swatch"></span>상담 및 분위기 결정</h3>
+          <p>캐릭터의 설정이나 원하는 보정 방향에 대해<br>이야기를 나눕니다.</p>
         </div>
       </div>
       <div class="step" data-tone="green">
-        <img class="thumb" src="2.png" alt="스튜디오 결정 및 답사" onerror="this.style.opacity=0">
+        <img class="thumb" src="2.webp" alt="스튜디오 결정 및 구도 조정" onerror="this.style.opacity=0">
         <div class="content">
           <span class="num">02</span>
-          <h3><span class="swatch"></span>스튜디오 결정 및 답사</h3>
-          <p>정해진 톤에 어울리는 스튜디오를 함께 찾고,<br>필요한 경우 사전 답사를 통해 구도를 미리 확인해드립니다.</p>
+          <h3><span class="swatch"></span>스튜디오 결정 및 구도 조정</h3>
+          <p>1단계에서 정한 톤앤매너에 맞는 스튜디오와<br>그 스튜디오에서 가능한 구도를 물색합니다.<br>필요하다면 구도 또한 상담 및 요청이 가능합니다.</p>
         </div>
       </div>
       <div class="step" data-tone="blue">
-        <img class="thumb" src="3.png" alt="구도 스케치 및 전달" onerror="this.style.opacity=0">
+        <img class="thumb" src="3.webp" alt="현장 촬영" onerror="this.style.opacity=0">
         <div class="content">
           <span class="num">03</span>
-          <h3><span class="swatch"></span>구도 스케치 및 전달</h3>
-          <p>촬영할 컷들의 구도를 간단한 스케치로 정리해 의뢰자에게 전달하고,<br>확인 후 촬영 일정을 확정합니다.</p>
+          <h3><span class="swatch"></span>현장 촬영</h3>
+          <p>여유있게 일찍 나와서 준비하며,<br>스튜디오 시간 동안 시간당 약 20장 이상을 찍습니다.</p>
         </div>
       </div>
     </div>
@@ -446,7 +537,7 @@
     <div class="price-cards">
       <div class="price-card">
         <div class="label">촬영 비용</div>
-        <div class="value"><span class="value-original">30,000원</span> 25,000원 <span class="value-unit">/ 시간</span></div>
+        <div class="value">30,000원 <span class="value-unit">/ 시간</span></div>
         <div class="desc">상담 및 준비 시간을 포함해, 실제 소요된 시간을 기준으로 계산됩니다.</div>
       </div>
       <div class="price-card accent">
