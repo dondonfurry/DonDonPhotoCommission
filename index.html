@@ -125,13 +125,20 @@
     gap:14px;
     animation:marquee-scroll 36s linear infinite;
   }
-  .hero-marquee .track img{
+  .hero-marquee .track .frame{
+    height:100%;
+    box-sizing:border-box;
+    padding:18px 10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .hero-marquee .track .frame img{
     height:100%;
     width:auto;
-    aspect-ratio:4/3;
-    object-fit:cover;
+    max-width:none;
+    object-fit:contain;
     filter:grayscale(0.25) brightness(0.55);
-    background:var(--card);
     display:block;
   }
   .hero-marquee .shade{
@@ -434,16 +441,16 @@
 <section class="hero">
   <div class="hero-marquee" aria-hidden="true">
     <div class="track">
-      <img src="1a.webp" onerror="this.style.display='none'">
-      <img src="2a.webp" onerror="this.style.display='none'">
-      <img src="3a.webp" onerror="this.style.display='none'">
-      <img src="4a.webp" onerror="this.style.display='none'">
-      <img src="5a.webp" onerror="this.style.display='none'">
-      <img src="1a.webp" onerror="this.style.display='none'">
-      <img src="2a.webp" onerror="this.style.display='none'">
-      <img src="3a.webp" onerror="this.style.display='none'">
-      <img src="4a.webp" onerror="this.style.display='none'">
-      <img src="5a.webp" onerror="this.style.display='none'">
+      <div class="frame"><img src="1a.webp" onerror="this.parentElement.style.display='none'"></div>
+      <div class="frame"><img src="2a.webp" onerror="this.parentElement.style.display='none'"></div>
+      <div class="frame"><img src="3a.webp" onerror="this.parentElement.style.display='none'"></div>
+      <div class="frame"><img src="4a.webp" onerror="this.parentElement.style.display='none'"></div>
+      <div class="frame"><img src="5a.webp" onerror="this.parentElement.style.display='none'"></div>
+      <div class="frame"><img src="1a.webp" onerror="this.parentElement.style.display='none'"></div>
+      <div class="frame"><img src="2a.webp" onerror="this.parentElement.style.display='none'"></div>
+      <div class="frame"><img src="3a.webp" onerror="this.parentElement.style.display='none'"></div>
+      <div class="frame"><img src="4a.webp" onerror="this.parentElement.style.display='none'"></div>
+      <div class="frame"><img src="5a.webp" onerror="this.parentElement.style.display='none'"></div>
     </div>
     <div class="shade"></div>
   </div>
