@@ -518,6 +518,31 @@
     margin-top:4px;
   }
 
+  /* 문의 버튼: 컬러 채움 강조 */
+  .contact-btn{ color:#101318; border-color:transparent; }
+  .contact-btn.telegram{
+    background:linear-gradient(135deg, #a3c0ec, #7fa3d9);
+    box-shadow:0 12px 32px -12px rgba(135,171,219,0.6), inset 0 1px 0 rgba(255,255,255,0.35);
+  }
+  .contact-btn.kakao{
+    background:linear-gradient(135deg, #a2d7bb, #7dbb9c);
+    box-shadow:0 12px 32px -12px rgba(133,192,163,0.55), inset 0 1px 0 rgba(255,255,255,0.35);
+  }
+  .contact-btn .label{ color:rgba(16,19,24,0.62); font-weight:500; }
+  .contact-btn .handle{ color:#101318; }
+  .contact-btn.telegram .icon-bar,
+  .contact-btn.kakao .icon-bar{ background:rgba(16,19,24,0.85); }
+  .contact-btn .arrow{
+    margin-left:auto;
+    font-size:22px;
+    font-weight:600;
+    line-height:1;
+    transition:transform .2s ease;
+  }
+  .contact-btn:hover{ filter:brightness(1.06); transform:translateY(-3px); }
+  .contact-btn:hover .arrow{ transform:translate(3px,-3px); }
+  .contact-btn.telegram:hover, .contact-btn.kakao:hover{ border-color:transparent; }
+
   /* ---------- footer ---------- */
   footer{ padding:64px 0; }
   footer .wrap{
@@ -800,10 +825,12 @@
       <a class="contact-btn telegram" href="https://t.me/DIGNALCIKA" target="_blank" rel="noopener">
         <span class="icon-bar"></span>
         <span><span class="label">Telegram</span><span class="handle">@DIGNALCIKA</span></span>
+        <span class="arrow">↗</span>
       </a>
       <a class="contact-btn kakao" href="https://open.kakao.com/o/sCFJiVCi" target="_blank" rel="noopener">
         <span class="icon-bar"></span>
         <span><span class="label">KakaoTalk</span><span class="handle">오픈채팅 바로가기</span></span>
+        <span class="arrow">↗</span>
       </a>
     </div>
   </div>
