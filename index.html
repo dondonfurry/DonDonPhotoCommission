@@ -179,8 +179,8 @@
     width:3px; height:14px; border-radius:1px;
   }
   .dot.m{ background:var(--magenta); }
-  .dot.g{ background:var(--green); }
-  .dot.b{ background:var(--blue); }
+  .dot.g{ background:var(--magenta); }
+  .dot.b{ background:var(--magenta); }
 
   .hero-brand{
     font-size:14px;
@@ -266,8 +266,8 @@
     transform:translate(48px, 36px);
   }
   .bubble.in{ opacity:1; transform:none; }
-  .bubble[data-tone="blue"]{ --bar:var(--blue); }
-  .bubble[data-tone="green"]{ --bar:var(--green); }
+  .bubble[data-tone="blue"]{ --bar:var(--magenta); }
+  .bubble[data-tone="green"]{ --bar:var(--magenta); }
 
   /* ---------- compare table ---------- */
   .compare-wrap{
@@ -317,6 +317,106 @@
   @media (prefers-reduced-motion: reduce){
     .bubble{ transition:none; opacity:1; transform:none; }
     .hero-marquee .track, body::before{ animation:none; }
+  }
+
+  /* ---------- feature detail ---------- */
+  .features{
+    display:flex;
+    flex-direction:column;
+    gap:72px;
+    margin-top:24px;
+  }
+  .feature{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:48px;
+    align-items:center;
+    padding-top:56px;
+    border-top:1px solid var(--line);
+  }
+  .feature:first-child{ padding-top:0; border-top:none; }
+  .feature .quote-bubble{
+    display:inline-block;
+    padding:24px 30px;
+    border-radius:22px;
+    border-bottom-left-radius:6px;
+    font-size:clamp(20px, 2.6vw, 28px);
+    font-weight:700;
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.08);
+    backdrop-filter:blur(24px) saturate(140%);
+    -webkit-backdrop-filter:blur(24px) saturate(140%);
+    box-shadow:0 8px 32px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.05);
+  }
+  .feature .quote-bubble::before{
+    content:"";
+    display:inline-block;
+    width:4px; height:22px; border-radius:1px;
+    margin-right:14px;
+    vertical-align:-3px;
+    background:var(--bar, var(--magenta));
+  }
+  .feature[data-tone="blue"] .quote-bubble{ --bar:var(--magenta); }
+  .feature[data-tone="green"] .quote-bubble{ --bar:var(--magenta); }
+  .feature-body .num{
+    font-family:var(--font);
+    font-size:13px;
+    color:var(--ink-soft);
+    display:block;
+    margin-bottom:10px;
+  }
+  .feature-body h3{
+    font-size:20px;
+    margin-bottom:14px;
+  }
+  .feature-body p{ color:var(--ink-soft); font-size:15px; }
+  .feature-body p + p{ margin-top:12px; }
+  .feature-body strong{
+    color:var(--ink);
+    font-weight:700;
+  }
+  .feature:nth-child(even){ direction:rtl; }
+  .feature:nth-child(even) > *{ direction:ltr; }
+
+  /* ---------- stat highlight ---------- */
+  .stat-section{ text-align:center; }
+  .stat-section .tag{
+    display:block;
+    font-size:13px;
+    color:var(--ink-soft);
+    margin-bottom:14px;
+  }
+  .stat-section h2{
+    font-size:clamp(24px, 3.6vw, 36px);
+    line-height:1.4;
+  }
+  .stat-card{
+    display:inline-block;
+    margin-top:48px;
+    padding:48px 64px;
+    border-radius:20px;
+    background:rgba(255,255,255,0.05);
+    border:1px solid rgba(255,255,255,0.08);
+    backdrop-filter:blur(26px) saturate(140%);
+    -webkit-backdrop-filter:blur(26px) saturate(140%);
+    box-shadow:0 8px 32px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.05);
+  }
+  .stat-card .year{
+    font-size:13px;
+    letter-spacing:0.04em;
+    color:var(--magenta-strong);
+    font-weight:600;
+    margin-bottom:16px;
+  }
+  .stat-card .figure{
+    font-size:clamp(36px, 6vw, 56px);
+    font-weight:700;
+    color:var(--ink);
+  }
+  .stat-card .caption{
+    margin-top:12px;
+    font-size:13px;
+    color:var(--ink-soft);
   }
 
   /* ---------- portfolio link ---------- */
@@ -429,8 +529,8 @@
   .step p{ color:var(--ink-soft); font-size:14.5px; max-width:56ch; }
 
   .step[data-tone="magenta"] .swatch{ background:var(--magenta); }
-  .step[data-tone="green"] .swatch{ background:var(--green); }
-  .step[data-tone="blue"] .swatch{ background:var(--blue); }
+  .step[data-tone="green"] .swatch{ background:var(--magenta); }
+  .step[data-tone="blue"] .swatch{ background:var(--magenta); }
 
   /* ---------- pricing ---------- */
   .price-cards{
@@ -467,7 +567,7 @@
     color:var(--ink-soft);
   }
   .price-card.accent{
-    border-left:3px solid var(--blue);
+    border-left:3px solid var(--magenta);
   }
 
   .note{
@@ -476,6 +576,41 @@
     color:var(--ink-soft);
   }
   .note::before{ content:"· "; }
+
+  /* ---------- notice ---------- */
+  .notice-box{
+    margin-top:28px;
+    border-radius:14px;
+    padding:28px 32px;
+    background:rgba(255,255,255,0.035);
+    border:1px solid rgba(255,255,255,0.07);
+    border-left:3px solid var(--ink-soft);
+    backdrop-filter:blur(20px) saturate(140%);
+    -webkit-backdrop-filter:blur(20px) saturate(140%);
+  }
+  .notice-box .notice-title{
+    font-size:13px;
+    font-weight:600;
+    color:var(--ink-soft);
+    letter-spacing:0.02em;
+    margin-bottom:16px;
+  }
+  .notice-box ul{ list-style:none; }
+  .notice-box li{
+    position:relative;
+    padding-left:16px;
+    font-size:14px;
+    color:var(--ink-soft);
+  }
+  .notice-box li + li{ margin-top:10px; }
+  .notice-box li::before{
+    content:"";
+    position:absolute;
+    left:0; top:9px;
+    width:4px; height:4px;
+    border-radius:50%;
+    background:var(--ink-soft);
+  }
 
   /* ---------- contact ---------- */
   .contact-buttons{
@@ -506,8 +641,8 @@
   }
   .contact-btn.telegram .icon-bar{ background:var(--blue); }
   .contact-btn.telegram:hover{ border-color:var(--blue); }
-  .contact-btn.kakao .icon-bar{ background:var(--green); }
-  .contact-btn.kakao:hover{ border-color:var(--green); }
+  .contact-btn.kakao .icon-bar{ background:#d9bd5a; }
+  .contact-btn.kakao:hover{ border-color:#d9bd5a; }
   .contact-btn .label{ color:var(--ink-soft); font-size:13px; letter-spacing:0.02em; }
   .contact-btn .handle{
     color:var(--ink);
@@ -525,8 +660,8 @@
     box-shadow:0 12px 32px -12px rgba(135,171,219,0.6), inset 0 1px 0 rgba(255,255,255,0.35);
   }
   .contact-btn.kakao{
-    background:linear-gradient(135deg, #a2d7bb, #7dbb9c);
-    box-shadow:0 12px 32px -12px rgba(133,192,163,0.55), inset 0 1px 0 rgba(255,255,255,0.35);
+    background:linear-gradient(135deg, #e8d27a, #d9bd5a);
+    box-shadow:0 12px 32px -12px rgba(217,189,90,0.45), inset 0 1px 0 rgba(255,255,255,0.35);
   }
   .contact-btn .label{ color:rgba(16,19,24,0.62); font-weight:500; }
   .contact-btn .handle{ color:#101318; }
@@ -609,6 +744,11 @@
 
     /* intro / steps / pricing */
     .intro-grid{ grid-template-columns:1fr; gap:20px; }
+    .stat-card{ margin-top:32px; padding:32px 28px; border-radius:16px; }
+    .stat-card .figure{ font-size:clamp(24px, 7.5vw, 32px); }
+    .features{ gap:44px; }
+    .feature{ grid-template-columns:1fr; gap:22px; padding-top:36px; direction:ltr; }
+    .feature .quote-bubble{ font-size:19px; padding:18px 22px; }
     .intro-grid p{ font-size:14.5px; }
     .step{ padding:32px 0; gap:18px; }
     .step .thumb{ width:100%; max-width:100%; border-radius:12px; }
@@ -622,7 +762,10 @@
     footer{ padding:40px 0; }
 
     /* 모바일 성능: 블러 강도 완화 */
-    header, .hero-box, .bubble, .compare-wrap, .price-card, .contact-btn, .portfolio-btn{
+    .notice-box{ padding:22px 22px; margin-top:24px; }
+    .notice-box li{ font-size:13px; }
+
+    header, .hero-box, .bubble, .compare-wrap, .price-card, .contact-btn, .portfolio-btn, .stat-card, .quote-bubble, .notice-box{
       backdrop-filter:blur(14px) saturate(130%);
       -webkit-backdrop-filter:blur(14px) saturate(130%);
     }
@@ -640,7 +783,6 @@
   <div class="wrap">
     <div class="logo">DonDon Fursuit Photo</div>
     <nav>
-      <a href="#intro">소개</a>
       <a href="#process">진행 과정</a>
       <a href="#pricing">가격</a>
       <a href="#contact">문의</a>
@@ -668,7 +810,7 @@
     <div class="hero-box">
       <span class="eyebrow">
         <span class="dots">
-          <span class="dot m"></span><span class="dot g"></span><span class="dot b"></span>
+          <span class="dot m"></span>
         </span>
         퍼슈트 사진 커미션
       </span>
@@ -730,30 +872,57 @@
   </div>
 </section>
 
-<section class="portfolio-link">
+<section id="features">
   <div class="wrap">
-    <a class="portfolio-btn" href="https://dondonfurry.github.io/dondonfurry/" target="_blank" rel="noopener">
-      <span class="icon-bar"></span>
-      <span><span class="label">Portfolio</span><span class="handle">포트폴리오 보러 가기</span></span>
-    </a>
+    <div class="section-head">
+      <span class="tag">Why Commission</span>
+      <h2>이런 점이 달라요</h2>
+    </div>
+    <div class="features">
+      <div class="feature" data-tone="magenta">
+        <div class="quote-bubble">"사진이 너무 적어..."</div>
+        <div class="feature-body">
+          <span class="num">01</span>
+          <h3>보장된 사진 갯수</h3>
+          <p>받는 사진의 갯수가 유동적이지 않고<br>단독적인 촬영을 통해서<br><strong>시간당 최소 15장</strong>의 퀄리티 있는 사진을 보장해드립니다.</p>
+        </div>
+      </div>
+      <div class="feature" data-tone="blue">
+        <div class="quote-bubble">"퍼슈트 분위기와 맞지 않아..."</div>
+        <div class="feature-body">
+          <span class="num">02</span>
+          <h3>원하는 분위기에 맞춘 사진 보정</h3>
+          <p>촬영회 전에 미리 원하는 분위기 및<br>회피하고 싶은 스타일을 상의한 뒤에,<br>실제 촬영 세션에서 반영하여 사진을 찍고<br>보정 또한 <strong>상담한 분위기에 맞춰 보정</strong>해드립니다.</p>
+        </div>
+      </div>
+      <div class="feature" data-tone="green">
+        <div class="quote-bubble">"원하는 로케이션이 있는데..."</div>
+        <div class="feature-body">
+          <span class="num">03</span>
+          <h3>어떤 스튜디오든, 어떤 로케이션이든 가능</h3>
+          <p>여러명이 가야하는 기존 촬영회 특성에서 벗어나<br>신청자가 원하는, 가고싶은 로케이션에서 찍습니다.<br>스튜디오, 카페 대관, 파티룸, 야외 촬영, 테마파크 등등<br><strong>자신만의 로케이션에서 자신만의 사진</strong>을 찍어보세요.</p>
+        </div>
+      </div>
+      <div class="feature" data-tone="magenta">
+        <div class="quote-bubble">"시간대가 안 맞아..."</div>
+        <div class="feature-body">
+          <span class="num">04</span>
+          <h3>원하는 시간대로 조정한 촬영회</h3>
+          <p>주말, 오후 시간대쯤으로 고정된 촬영회 대신<br>자신이 원하는 시간대를 상의할 수 있습니다.<br><strong>새벽 시간대나, 아침 시간대, 평일</strong>도 문의만 주세요.</p>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-<section id="intro">
+<section class="stat-section">
   <div class="wrap">
-    <div class="section-head">
-      <span class="tag">Intro</span>
-      <h2>소개</h2>
-    </div>
-    <div class="intro-grid">
-      <div>
-        <p>퍼슈트는 캐릭터 그 자체인 만큼, 캐릭터성을 살려야 합니다. <br>보정 방법과 촬영 시에 드러나는 색감과 자세로, <br>퍼슈터의 캐릭터성을 살려드립니다.</p>
-        <p>촬영 전 1:1 맞춤 상담을 통해 <br>캐릭터의 성격과 원하는 분위기를 먼저 파악하고, <br>그에 맞는 장소와 구도, 색감까지 함께 정합니다.</p>
-      </div>
-      <div>
-        <p>촬영은 스튜디오에서 진행하는 것을 기본으로 하며, <br>스튜디오 대여 비용은 의뢰자 측에서 부담합니다.</p>
-        <p>비용은 촬영 준비부터 종료까지 소요된 시간을 기준으로, <br>시간당 30,000원이 적용됩니다.</p>
-      </div>
+    <span class="tag">Promise</span>
+    <h2>한번의 커미션으로,<br>사진 걱정 없이</h2>
+    <div class="stat-card">
+      <div class="year">2026년 촬영 커미션</div>
+      <div class="figure">시간당 평균 30장 이상 기록</div>
+      <div class="caption">(보정완료본 기준)</div>
     </div>
   </div>
 </section>
@@ -812,6 +981,15 @@
       </div>
     </div>
     <p class="note">최종 견적은 촬영 컷 수, 장소, 소요 시간에 따라 상담 후 안내드립니다.</p>
+
+    <div class="notice-box">
+      <div class="notice-title">참고사항</div>
+      <ul>
+        <li>신청자의 지각, 노쇼로 인한 시간은 환불해드리기 어렵습니다.</li>
+        <li>이동 거리 및 이동 위치에 따른 추가 비용이 발생할 수 있습니다.</li>
+        <li>보정사진 전달까지는 최대 2주가 소요됩니다.</li>
+      </ul>
+    </div>
   </div>
 </section>
 
@@ -838,7 +1016,7 @@
 
 <footer>
   <div class="wrap">
-    <div class="brand">DonDon Fursuit Photo</div>
+    <div class="brand">DonDon Fursuit Photo commission</div>
   </div>
 </footer>
 
